@@ -6,6 +6,7 @@ const TableHeader = () => {
         <tr>
           <th>Name</th>
           <th>Job</th>
+	  <th>ID</th>
         </tr>
       </thead>
     )
@@ -16,6 +17,7 @@ const TableBody = props => {
         <tr key={index}>
           <td>{row.name}</td>
           <td>{row.job}</td>
+	  <td>{row.id}</td>
           <td>
             <button onClick={() => props.removeCharacter(index)}>Delete</button>
           </td>

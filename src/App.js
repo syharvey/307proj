@@ -10,12 +10,15 @@ class App extends Component {
 
     removeCharacter = index => {
       const { characters } = this.state
-    
-      this.setState({
-        characters: characters.filter((character, i) => {
-          return i !== index
-        }),
-      })
+      this.makeDeleteCall(characters[index]).then(callResult => {
+	if (callResult.status === 200) {
+      		this.setState({
+        	characters: characters.filter((character, i) => {
+          	return i !== index
+        	}),
+      		})
+	}
+    });
     }
 
     handleSubmit = character => {
@@ -49,6 +52,8 @@ class App extends Component {
     	});
     }
 	makePostCall(character){
+		console.log("posting");
+		console.log(character);
 		return axios.post('http://localhost:5000/users', character)
 		.then(function (response) {
 			console.log(response.status);
@@ -59,6 +64,19 @@ class App extends Component {
       			return false;
     		});
  	}
+	makeDeleteCall(character){
+		console.log("deleting");
+		console.log(character);
+		return axios.delete('http://localhost:5000/users/'.concat(character['id']))
+		.then(function (res) {
+			console.log(res.status);
+			return res;
+		})
+		.catch(function (error) {
+			console.log(error);
+			return false;
+		});
+	}
   }
 
 export default App
