@@ -52,8 +52,6 @@ class App extends Component {
     	});
     }
 	makePostCall(character){
-		console.log("posting");
-		console.log(character);
 		return axios.post('http://localhost:5000/users', character)
 		.then(function (response) {
 			console.log(response.status);
@@ -65,8 +63,6 @@ class App extends Component {
     		});
  	}
 	makeDeleteCall(character){
-		console.log("deleting");
-		console.log(character);
 		return axios.delete('http://localhost:5000/users/'.concat(character['id']))
 		.then(function (res) {
 			console.log(res.status);
